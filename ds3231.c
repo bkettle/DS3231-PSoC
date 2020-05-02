@@ -282,6 +282,7 @@ DateTime RTC_now() {
     while(0u == (I2CRTC_MasterStatus() & I2CRTC_MSTAT_WR_CMPLT));      // Waiting for writing
     I2CRTC_MasterClearStatus();  
     
+    I2CRTC_MasterReadBuf(DS3231_ADDRESS, RTC_read_buff, 7, I2CRTC_MODE_COMPLETE_XFER);
     while(0u == (I2CRTC_MasterStatus() & I2CRTC_MSTAT_RD_CMPLT));      // Wait for read to finish
     I2CRTC_MasterClearStatus();
     
